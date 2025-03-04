@@ -11,8 +11,8 @@
 /**
  * Класс для работы с API
  *
- * @author		User Name
- * @version		v.1.0 (dd/mm/yyyy)
+ * @author		Ivan Demchenko
+ * @version		v.1.1 (04/03/2025)
  */
 class Api
 {
@@ -25,19 +25,23 @@ class Api
 	/**
 	 * Заполняет строковый шаблон template данными из объекта object
 	 *
-	 * @author		User Name
-	 * @version		v.1.0 (dd/mm/yyyy)
+	 * @author		Ivan Demchenko
+	 * @version		v.1.1 (04/03/2025)
 	 * @param		array $array
 	 * @param		string $template
 	 * @return		string
 	 */
 	public function get_api_path(array $array, string $template) : string
 	{
-		$result = '';
+        $result = $template;
 
-		/* Здесь ваш код */
+        foreach ($array as $key => $value) {
+            $placeholder = "%{$key}%";
+            $encodedValue = rawurlencode($value);
+            $result = str_replace($placeholder, $encodedValue, $result);
+        }
 
-		return $result;
+        return $result;
 	}
 }
 
